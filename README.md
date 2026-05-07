@@ -75,8 +75,8 @@ cp SKILL.md ~/.claude/skills/weekly-progress-report/
 
 ## Creating a New Progress Report Page
 
-1. Copy the template page: `XX-XX-XXXX Agentic AI Progress Report Template - Make a Copy`
-2. Rename it with the current date (e.g., `05-15-2026 Agentic AI Progress Report`)
+1. Copy the template page: `XX-XX-XXXX Agentic AI Progress Report Template - Make a Copy`. Link: https://cisco-sbg.atlassian.net/wiki/spaces/dev/pages/1425168911/XX-XX-XXXX+Agentic+AI+Progress+Report+Template+-+Make+a+Copy 
+2. Rename it with the current date or the title you want it to be - it's recommended that this be a standard format for the cadence in which you plan to create these reports. The template is meant to be duplicated each week as a new report. (e.g., `05-15-2026 Agentic AI Progress Report`)
 3. Update all Aha! release links to point to your actual releases
 4. Update all Jira links to point to your actual issues
 5. Run `/weekly-progress-report` with your new page URL

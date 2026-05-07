@@ -150,16 +150,47 @@ confluence attachment-upload <page_id> --file /tmp/progress-bar-XX.svg
 </ul>
 ```
 
-### Step 4: Sort Cells by Due Date
+### Step 4: Sort Cells Within Each Section
 
 Under each major heading (e.g., "Duo", "Secure Access", "CII"):
-1. Identify all table cells belonging to that section
-2. Parse their target due dates
-3. Sort by:
-   - Items with dates: earliest first
-   - Items marked [Stretch Goal]: at the bottom
-   - Items with no date: at the very bottom (above stretch goals)
-4. Reorder the table cells in the HTML
+
+**Primary sort rules:**
+1. **[Stretch Goal] items always go to the bottom** of their section
+2. Non-stretch items are sorted by target due date (if available)
+
+**Fallback when no target due date:**
+If a workstream has no Jira link or no due date, fall back to sorting by:
+1. **Progress percentage** (highest first)
+2. **Aha Status** (deprioritize these statuses to the bottom):
+   - "Under Consideration"
+   - "Planned"
+   - "Not Started"
+   - "Researching"
+   - "Evaluation"
+
+**Sort priority (top to bottom):**
+```
+1. Non-stretch items with due dates → earliest date first
+2. Non-stretch items without dates → highest % first, "active" statuses before "planned" statuses
+3. [Stretch Goal] items → sorted by % descending
+```
+
+**Example sort key function:**
+```python
+def get_sort_key(item):
+    # Stretch goals always at bottom
+    stretch_order = 1 if item['stretch'] else 0
+
+    # Deprioritize "waiting" statuses
+    low_priority_statuses = ['under consideration', 'planned', 'not started', 'researching', 'evaluation']
+    status_penalty = 1 if item['status'].lower() in low_priority_statuses else 0
+
+    # 0% items go lower (but above low-priority statuses)
+    zero_penalty = 0.5 if item['pct'] == 0 else 0
+
+    # Higher percentage = higher priority (negative for descending)
+    return (stretch_order, status_penalty, zero_penalty, -item['pct'])
+```
 
 ### Step 5: Calculate Overall Progress
 

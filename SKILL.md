@@ -218,6 +218,14 @@ confluence update <page_id> --file /tmp/progress-report-updated.html --format st
 
 Width of the green bar = percentage × 2 (since total width is 200px for 100%)
 
+## Critical Best Practices
+
+**ALWAYS re-read the page fresh before making any updates.**
+Users may add, remove, or modify cells between your reads. Never rely on cached/stale page data from earlier in the conversation. Each update cycle should start with a fresh `confluence read`.
+
+**Count workstreams by progress bars, not by Aha links.**
+Some workstreams may not have Aha releases linked yet but still count toward the total.
+
 ## Error Handling
 
 - If Aha! release not found: Keep existing data, log warning

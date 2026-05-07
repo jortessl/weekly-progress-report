@@ -163,11 +163,27 @@ Under each major heading (e.g., "Duo", "Secure Access", "CII"):
 
 ### Step 5: Calculate Overall Progress
 
-1. Extract all progress percentages from workstream cells
-2. Exclude [Stretch Goal] items from the calculation
-3. Calculate average: `sum(percentages) / count`
-4. Round to nearest integer
-5. Update the header: `XX% Overall Progress (N workstreams)`
+**CRITICAL: Correct Counting Logic**
+
+Count ALL workstreams that have a progress bar, regardless of whether they have an Aha link.
+Do NOT filter by presence of Aha links - some workstreams may not have Aha releases linked yet but still count toward the total.
+
+**What to count:**
+- Any table cell with a `progress-bar-XX.svg` attachment = 1 workstream
+- Include workstreams even if they have no Aha link or no Jira link
+
+**What to exclude:**
+- Only exclude items with `[Stretch Goal]` or `[Stretch]` in the title
+- These are excluded from BOTH the percentage calculation AND the workstream count
+
+**Calculation steps:**
+1. Find all table cells containing `progress-bar-XX.svg`
+2. Extract the title from each cell's `<h3>` tag
+3. If title contains `[Stretch` → exclude from calculation
+4. For all non-stretch items: collect their percentages
+5. Calculate: `average = sum(percentages) / count(non-stretch workstreams)`
+6. Round to nearest integer
+7. Update the header: `XX% Overall Progress (N workstreams)` where N = count of non-stretch workstreams
 
 ### Step 6: Upload Updated Page
 

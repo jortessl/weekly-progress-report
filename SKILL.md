@@ -174,6 +174,15 @@ Replace the content between `Child Features:</ac:parameter><ac:rich-text-body>` 
 - 1-99% → Yellow
 - 100% → Green
 
+**IMPORTANT: Fix ALL colors across the entire page.**
+After updating child features, scan the ENTIRE page for percentage status macros and fix any with incorrect colors. This catches colors from previous updates that may have been set incorrectly.
+
+Pattern to find and fix (colour can appear before or after title):
+```
+<ac:parameter ac:name="colour">COLOR</ac:parameter><ac:parameter ac:name="title">XX%</ac:parameter>
+<ac:parameter ac:name="title">XX%</ac:parameter><ac:parameter ac:name="colour">COLOR</ac:parameter>
+```
+
 If a release has no child features in Aha, display:
 ```html
 <ul><li><p>No child features</p></li></ul>

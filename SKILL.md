@@ -140,14 +140,43 @@ confluence attachment-upload <page_id> --file /tmp/progress-bar-XX.svg
 
 **Target Due Date**: Update the date text after "Target Due Date:"
 
-**Child Features**: In the "Child Features:" expand section, create a bullet list:
+**Child Features**: In the "Child Features:" expand section, replace the content with features from Aha.
+
+Query Aha for child features using:
+```graphql
+query {
+  release(id: "RELEASE-ID") {
+    features {
+      referenceNum
+      name
+      workflowStatus { name }
+      progress
+    }
+  }
+}
+```
+
+Replace the content between `Child Features:</ac:parameter><ac:rich-text-body>` and `</ac:rich-text-body></ac:structured-macro>` with:
 ```html
 <ul>
-  <li><ac:structured-macro ac:name="status">...</ac:structured-macro>
-      <a href="https://ciscosecurity.aha.io/features/FEATURE-ID">FEATURE-ID</a> -
-      Feature Name (Status) | <a href="JIRA-URL">Jira</a></li>
+  <li><p><ac:structured-macro ac:name="status" ac:schema-version="1">
+    <ac:parameter ac:name="title">PROGRESS%</ac:parameter>
+    <ac:parameter ac:name="colour">COLOR</ac:parameter>
+  </ac:structured-macro>
+  <a href="https://ciscosecurity.aha.io/features/FEATURE-ID">FEATURE-ID</a> -
+  Feature Name (Status)</p></li>
   ...
 </ul>
+```
+
+**Child feature percentage pill colors:**
+- 0% → Blue
+- 1-99% → Yellow
+- 100% → Green
+
+If a release has no child features in Aha, display:
+```html
+<ul><li><p>No child features</p></li></ul>
 ```
 
 **Status Update Date**: Update dates next to "Status Update:" headers.

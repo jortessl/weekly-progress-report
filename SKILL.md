@@ -150,6 +150,14 @@ confluence attachment-upload <page_id> --file /tmp/progress-bar-XX.svg
 </ul>
 ```
 
+**Status Update Date**: Replace `[Date]` placeholders with the report date.
+- Extract the date from the page title (e.g., "05-08-2026 Agentic AI Progress Report" → May 8, 2026)
+- Replace all `[Date]` text with the Confluence time macro:
+```html
+<time datetime="2026-05-08" />
+```
+- This renders as a formatted date in Confluence (e.g., "May 8, 2026")
+
 ### Step 4: Sort Cells Within Each Section
 
 Under each major heading (e.g., "Duo", "Secure Access", "CII"):

@@ -13,6 +13,8 @@ When you run `/weekly-progress-report`, Claude will:
 5. **Sort by Due Date** - Reorders cells under each heading by target due date (soonest first, stretch goals last)
 6. **Calculate Overall Progress** - Computes and updates the overall program progress at the top of the page
 
+Make sure to provide the URL to the page you want Claude to run this skill on - if starting from the template page provided, be sure to make a copy of that page and save it to the folder you would like to have it within in Confluence. 
+
 ## Prerequisites
 
 ### 1. Aha! MCP
@@ -88,9 +90,9 @@ For the skill to work correctly, your page should have:
 - **Workstream cells** in tables, each containing:
   - An Aha! release link (e.g., `https://ciscosecurity.aha.io/releases/AAI-R-31`)
   - A Jira link (e.g., `https://cisco-sbg.atlassian.net/browse/ZTMCP-1205`)
-  - A progress bar image attachment
-  - A status macro
-  - An expandable "Child Features" section
+  - A progress bar image in each cell - the template already has a progress bar in each cell. When you run the skill, Claude will update this image for each cell. 
+  - A status macro - again, the template already has this and will be updated when running this skill
+  - An expandable "Child Features" section - again, the template already has this and will be updated when running this skill
 
 - **Section headings** (e.g., "Duo", "Secure Access", "CII") to group workstreams
 

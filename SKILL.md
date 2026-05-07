@@ -183,6 +183,13 @@ Pattern to find and fix (colour can appear before or after title):
 <ac:parameter ac:name="title">XX%</ac:parameter><ac:parameter ac:name="colour">COLOR</ac:parameter>
 ```
 
+**Sort child features by percentage descending:**
+Within each cell, sort child features from highest percentage to lowest:
+- 100% items at the top
+- 0% items at the bottom
+
+This makes it easy to see which features are complete vs still in progress.
+
 If a release has no child features in Aha, display:
 ```html
 <ul><li><p>No child features</p></li></ul>

@@ -297,6 +297,39 @@ confluence update <page_id> --file /tmp/progress-report-updated.html --format st
 | At Risk | Yellow |
 | Off Track | Red |
 
+## DO NOT MODIFY: User-Controlled Status Pills
+
+**CRITICAL REMINDER: The following status pills are USER-CONTROLLED and must NEVER be changed by this skill.**
+
+These are the status pills that appear in:
+1. The **Instructions section** at the top of the page (showing examples of available statuses)
+2. The **"Status Update:"** line within each workstream cell (set by workstream owners)
+
+These pills have FIXED colors that must be preserved:
+
+| Status Text | Color | Notes |
+|-------------|-------|-------|
+| On Track | Green | Most common status |
+| on track | Green | Lowercase variant |
+| Not started | Blue | |
+| At risk | Yellow | |
+| off track | Red | |
+| shipped | Purple | |
+| paused/deprioritized | Grey (no colour param) | |
+| in progress | Yellow | User status, not Aha status |
+
+**Why this matters:**
+- The Instructions section shows EXAMPLES of each status type with their correct colors
+- Workstream owners manually set their "Status Update" pill each week
+- These are NOT pulled from Aha - they reflect the owner's assessment
+- Changing these colors breaks the visual consistency and confuses users
+
+**How to avoid changing them:**
+- Only update status pills that have `ac:macro-id="status-{AHA-RELEASE-ID}"` (e.g., `status-AAI-R-31`)
+- NEVER modify status pills in the Instructions section
+- NEVER modify status pills in the "Status Update:" lines
+- When fixing percentage pill colors, ensure regex patterns do NOT match these text-based status pills
+
 ## Progress Bar SVG Template
 
 ```svg

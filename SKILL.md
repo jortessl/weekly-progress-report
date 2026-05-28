@@ -328,7 +328,18 @@ These pills have FIXED colors that must be preserved:
 - Only update status pills that have `ac:macro-id="status-{AHA-RELEASE-ID}"` (e.g., `status-AAI-R-31`)
 - NEVER modify status pills in the Instructions section
 - NEVER modify status pills in the "Status Update:" lines
-- When fixing percentage pill colors, ensure regex patterns do NOT match these text-based status pills
+- When fixing percentage pill colors, ensure regex patterns ONLY match pills where title contains "%" (e.g., `<ac:parameter ac:name="title">50%</ac:parameter>`)
+- ALWAYS run a final pass to restore user-controlled status pill colors after any bulk updates
+
+**CRITICAL: Final cleanup step after ALL updates:**
+After updating the page, ALWAYS run these regex replacements to fix any accidentally changed user status pills:
+- `On Track` / `on track` → colour=Green
+- `Not started` → colour=Blue
+- `At risk` → colour=Yellow
+- `off track` → colour=Red
+- `shipped` → colour=Purple
+- `paused/deprioritized` → remove colour parameter (defaults to Grey)
+- `in progress` (lowercase, user status) → colour=Yellow
 
 ## Progress Bar SVG Template
 
